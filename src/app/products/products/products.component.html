@@ -1,0 +1,8 @@
+<p>products works!</p>
+
+
+
+<div *ngIf="isLoading$ | async">Loading...</div>
+<div *ngFor="let item of products$ | async">
+  {{item | json}}
+</div>

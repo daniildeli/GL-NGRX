@@ -120,6 +120,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "gl-ngrx"
+    }
+  },
+  "defaultProject": "gl-ngrx",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
