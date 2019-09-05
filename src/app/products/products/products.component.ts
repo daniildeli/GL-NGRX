@@ -4,6 +4,8 @@ import { Component, OnInit } from '@angular/core';
 import {State} from 'src/app/state/reducer/sidebar.reducer';
 import {Observable} from 'rxjs';
 import * as fromProducts from '../state/reducers/products.reducer';
+import {IProduct} from '../interface/product.interface';
+import {PageEvent} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-products',
@@ -12,14 +14,14 @@ import * as fromProducts from '../state/reducers/products.reducer';
 })
 export class ProductsComponent implements OnInit {
   public isLoading$: Observable<boolean>;
-  public products$: Observable<any[]>;
+  public products$: Observable<IProduct[]>;
 
   constructor(
     private store: Store<State>
   ) { }
 
   ngOnInit() {
-    this.store.dispatch(new LoadProductss());
+    this.getProduct({ pageIndex: 0, length: 2, pageSize: 2 });
 
 
     this.isLoading$ = this.store.pipe(
@@ -30,6 +32,11 @@ export class ProductsComponent implements OnInit {
       select(fromProducts.productsFeatureKey, 'data')
     );
 
+  }
+
+
+  getProduct(event: PageEvent) {
+    this.store.dispatch(new LoadProductss(event));
   }
 
 }

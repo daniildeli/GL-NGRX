@@ -5,7 +5,9 @@ export const sidebarFeatureKey = 'sidebar';
 
 export type State = boolean;
 
-export const initialState: State = false;
+
+// Boolean(localStorage.getItem('sidebar'))
+export const initialState: State = true;
 
 export function reducer(state = initialState, action: fromSidebar.SidebarActions): State {
   switch (action.type) {
@@ -13,6 +15,13 @@ export function reducer(state = initialState, action: fromSidebar.SidebarActions
 
     case fromSidebar.SidebarActionTypes.ToggleSidebar: {
       console.log(action);
+
+      // service
+      // if (!state) {
+      //   localStorage.clear();
+      // }
+      // localStorage.setItem('sidebar', 'true');
+
       return !state;
     }
 
