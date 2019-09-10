@@ -1,3 +1,4 @@
+import { AddProductToCart } from './../../cart/actions/cart.actions';
 import { LoadProductss } from './../state/actions/products.actions';
 import { Store, select } from '@ngrx/store';
 import { Component, OnInit } from '@angular/core';
@@ -37,6 +38,10 @@ export class ProductsComponent implements OnInit {
 
   getProduct(event: PageEvent) {
     this.store.dispatch(new LoadProductss(event));
+  }
+
+  buy(item: IProduct): void {
+    this.store.dispatch(new AddProductToCart(item))
   }
 
 }
